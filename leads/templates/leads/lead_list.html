@@ -1,0 +1,39 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>The HTML5 Herald</title>
+  <meta name="description" content="The HTML5 Herald">
+  <meta name="author" content="SitePoint">
+
+  <link rel="stylesheet" href="css/styles.css?v=1.0">
+  <style>
+    .lead{
+      padding-top: 10px;
+      padding-bottom: 10px;
+      padding-left: 6px;
+      padding-right: 6px;
+      margin-top: 10px;
+      background-color: #f6f6f6;
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>this is all our leads</h1>
+  {% for lead in leads%}
+    <div class= 'lead'>
+      <a href = "/leads/{{lead.pk}}/">
+      {{ lead.first_name }} 
+      {{ lead.age}}
+      </a>
+    </div>
+  {% endfor %}
+
+
+  <script src="js/scripts.js"></script>
+</body>
+</html>
