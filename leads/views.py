@@ -1,11 +1,58 @@
 from django.http.response import HttpResponseNotAllowed
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, reverse
 from django.http import HttpResponse
 from django.utils.html import format_html
+
+from django.views import generic
 from .models import Lead, Agent
 from .forms import LeadForm, LeadModelForm
 
+
 # Create your views here.
+
+class LandingPageView(generic.TemplateView):
+    template_name = "landing.html"
+
+
+class LeadListView(generic.ListView):
+    template_name = 'leads/lead_list.html'
+    queryset= Lead.objects.all()
+    context_object_name = 'leads'
+
+
+class LeadDetailView(generic.DetailView):
+    template_name = 'leads/lead_detail.html'
+    queryset = Lead.objects.all()
+    context_object_name = 'lead'
+
+
+class LeadCreateView(generic.CreateView):
+    template_name = 'leads/lead_create.html'
+    form_class= LeadModelForm  
+
+    def get_success_url(self):
+        return reverse('leads:lead-list')
+
+class LeadUpdateView(generic.UpdateView):
+    template_name = 'leads/lead_update.html'
+    form_class = LeadModelForm
+    queryset = Lead.objects.all()
+
+    def get_success_url(self):
+        return reverse('leads:lead-list')
+
+
+class LeadDeleteView(generic.DeleteView):
+    template_name = 'leads/lead_delete.html'
+    queryset = Lead.objects.all()
+
+    def get_success_url(self):
+        return reverse('leads:lead-list')
+
+
+def landing_page(request):
+    return render(request, 'landing.html')
+
 
 def lead_list(request):
     leads = Lead.objects.all()

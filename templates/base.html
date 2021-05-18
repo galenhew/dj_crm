@@ -7,9 +7,9 @@
   <title>The HTML5 Herald</title>
   <meta name="description" content="The HTML5 Herald">
   <meta name="author" content="SitePoint">
+  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 
-  <link rel="stylesheet" href="css/styles.css?v=1.0">
-  <style>
+  {% comment %} <style>
     .lead{
       padding-top: 10px;
       padding-bottom: 10px;
@@ -19,13 +19,17 @@
       background-color: #f6f6f6;
       width: 100%;
     }
-  </style>
+  </style> {% endcomment %}
 </head>
 
 <body>
+    <div class= 'max-w-4xl mx-auto'>
+    {% include 'navbar.html' %}
     {% block content%}
     {% endblock content %}
-    {% include 'scripts.html' %}
+    </div>
+
+
   <script src="js/scripts.js"></script>
 </body>
 </html>
