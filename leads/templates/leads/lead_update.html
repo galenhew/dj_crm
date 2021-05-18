@@ -9,23 +9,12 @@
   <meta name="author" content="SitePoint">
 
   <link rel="stylesheet" href="css/styles.css?v=1.0">
-  <style>
-    .lead{
-      padding-top: 10px;
-      padding-bottom: 10px;
-      padding-left: 6px;
-      padding-right: 6px;
-      margin-top: 10px;
-      background-color: #f6f6f6;
-      width: 100%;
-    }
-  </style>
 </head>
 
 <body>
-<a href="{% url 'leads:lead-list'%}">back to leads</a>
+<a href="{% url 'leads:lead-list' %}"> Leads</a>
 <hr/>
-  <h1>create a new lead</h1>
+  <h1>Update lead: {{ lead.first_name}}  {{ lead.last_name}}</h1>
   <form method = "post">
     {% csrf_token%}
     {{form.as_p}}
